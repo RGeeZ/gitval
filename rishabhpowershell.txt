@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct nodedata
+{
+    int data;
+    struct nodedata *next;
+}node;
+node *start=NULL;
+node *ptr,*temp;
+void display(){
+    node *ptr;
+    ptr=start;
+    printf("\n");
+    while(ptr!=NULL){
+        printf("%d",ptr->data);
+        ptr=ptr->next;
+    }
+    printf("\n");
+}
+void ndata(){
+    int n,i;
+    printf("ENTER THE NO OF NODES");
+    scanf("%d",&n);
+    for(i=0;i<n;i++){
+        temp=(node*)malloc(sizeof(node));
+        printf("ENTER THE DATA");
+        scanf("%d",&temp->data);
+        temp->next=NULL;
+        if(start==NULL){
+            start=temp;
+            ptr=temp;
+        }
+        else{
+            ptr->next=temp;
+            ptr=ptr->next;
+        }
+    }
+}
+void insert(){
+    node *next;
+    int k;
+    temp=(node*)malloc(sizeof(node));
+    printf("ENTER THE DATA BEFORE THE ");
+    scanf("%d",&k);
+    while(ptr->next!=NULL && ptr->data!=k){
+        ptr=ptr->next;
+    }
+    ptr=start;
+    while(ptr->next!=NULL){
+        ptr=ptr->next;
+    }
+    ptr->next=temp;
+    temp->next=NULL;
+    printf("AFTER DELETION");
+}
+int main()
+{
+    ndata();
+    display();
+    insert();
+    display();
+
+    return 0;
+}
